@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+
+            <HorizontalScrollView
+                android:id="@+id/hscrollview"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:layout_gravity="right"
+                >
+                <TextView
+                    android:id="@+id/tv_input"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:scrollHorizontally="true"
+                    android:gravity="right"
+                    android:paddingRight="18dp"
+                    android:paddingLeft="10dp"
+                    android:maxLines="1"
+                    android:text="input"
+                    android:textSize="30sp" />
+            </HorizontalScrollView>
+
+
+            <TextView
+                android:id="@+id/tv_output"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="right"
+                android:paddingRight="18dp"
+                android:paddingLeft="10dp"
+                android:text="partial computation"
+                android:textSize="25sp" />
+
+            <GridLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:columnCount="4">
+
+                <Button
+                    android:id="@+id/btn_seven"
+                    android:text="7" />
+
+                <Button
+                    android:id="@+id/btn_eight"
+                    android:text="8" />
+
+                <Button
+                    android:id="@+id/btn_nine"
+                    android:text="9" />
+
+                <Button
+                    android:id="@+id/btn_multiply"
+                    android:text="*" />
+
+                <Button
+                    android:id="@+id/btn_four"
+                    android:text="4" />
+
+                <Button
+                    android:id="@+id/btn_five"
+                    android:text="5" />
+
+                <Button
+                    android:id="@+id/btn_six"
+                    android:text="6" />
+
+                <Button
+                    android:id="@+id/btn_divide"
+                    android:text="/" />
+
+                <Button
+                    android:id="@+id/btn_one"
+                    android:text="1" />
+
+                <Button
+                    android:id="@+id/btn_two"
+                    android:text="2" />
+
+                <Button
+                    android:id="@+id/btn_three"
+                    android:text="3" />
+
+                <Button
+                    android:id="@+id/btn_minus"
+                    android:text="-" />
+
+                <Button
+                    android:id="@+id/btn_dot"
+                    android:text="." />
+
+                <Button
+                    android:id="@+id/btn_zero"
+                    android:text="0" />
+
+                <Button
+                    android:id="@+id/btn_equal"
+                    android:text="=" />
+
+                <Button
+                    android:id="@+id/btn_plus"
+                    android:text="+" />
+
+                <Button
+                    android:id="@+id/btn_clr"
+                    android:layout_width="200dp"
+                    android:layout_height="wrap_content"
+                    android:layout_columnSpan="3"
+                    android:layout_gravity="center_horizontal"
+                    android:text="CLR" />
+
+                <Button
+                    android:id="@+id/btn_delete"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_columnSpan="1"
+                    android:layout_gravity="center_horizontal"
+                    android:text="DEL" />
+
+            </GridLayout>
+
+
+        </LinearLayout>
+    </ScrollView>
+</layout>
