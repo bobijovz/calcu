@@ -1,5 +1,6 @@
 package jp.co.arkray.android.calculator;
 
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Stack;
@@ -22,16 +23,14 @@ public class Utils {
         Stack<String> valArray = new Stack<>();
         ArrayList<String> postFix = new ArrayList<>();
 
-        Collections.addAll(opArray, data.split(op.pattern()));
         Collections.addAll(valArray, data.split(val.pattern()));
+        Collections.addAll(opArray, data.split(op.pattern()));
 
-        if (data.substring(0, 1).contentEquals("-")) {
-            opArray.remove(0);
-        }
 
         for (int i = 0; i < valArray.size(); i++) {
             dataSplit.push(valArray.get(i));
-            if (opArray.size() > i ) dataSplit.push(opArray.get(i));
+            if (opArray.size() > i + 1)dataSplit.push(opArray.get(i + 1));
+
         }
 
         for (String token : dataSplit) {
@@ -48,7 +47,7 @@ public class Utils {
                         tempOperatorStack.push(token);
                     }
                 }
-            } else if (token.matches(Constant.NUM_PATTERN.pattern())) {
+            } else {
                 postFix.add(token);
 
             }
@@ -96,7 +95,7 @@ public class Utils {
     public Double parseData(ArrayList<String> data){
         Stack<Double> numberStack =new Stack<Double>();
         for (String token: data){
-            if (!token.equals("-") && token.matches(Constant.NUM_PATTERN.pattern())) {
+            if ( token.matches(Constant.NUM_PATTERN.pattern())) {
                 double d = Double.parseDouble(token);
                 numberStack.push(d);
             } else {

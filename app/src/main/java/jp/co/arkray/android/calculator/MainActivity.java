@@ -37,9 +37,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         binder.btnSeven.setOnClickListener(this);
         binder.btnEight.setOnClickListener(this);
         binder.btnNine.setOnClickListener(this);
-        //collection.append("-1.23/-2.45*-1.56+2019-5.123*5/7-22-0.24+55-2.5/2*5*3-5.4+55*53.6");
-        //binder.tvInput.setText(String.valueOf(collection));
-        //binder.hscrollview.fullScroll(HorizontalScrollView.FOCUS_RIGHT);
+        collection.append("-1.23/-2.45*-1.56+2019-5.123*5/7-22-0.24+55-2.5/2*5*3-5.4+55*53.6");
+        binder.tvInput.setText(String.valueOf(collection));
+        binder.hscrollview.fullScroll(HorizontalScrollView.FOCUS_RIGHT);
 
 
     }
@@ -48,19 +48,26 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.btn_clr:
-                collection.replace(0, collection.length(), "0");
-                binder.tvInput.setText(String.valueOf(collection));
+
                 collection.delete(0, collection.length());
+                binder.tvInput.setText(String.valueOf(collection));
+                binder.tvOutput.setText(String.valueOf(collection));
 
                 break;
             case R.id.btn_delete:
                 if (collection.length() > 0) {
                     collection.delete(collection.length() - 1, collection.length());
                     binder.tvInput.setText(String.valueOf(collection));
+                    if (collection.length() > 2)
+                        binder.tvOutput.setText(calculate(collection.toString()));
+                    else
+                        binder.tvOutput.setText("");
                 } else {
-                    collection.replace(0, 0, "0");
+                    collection.replace(0, 0, "");
                     binder.tvInput.setText(String.valueOf(collection));
+                    binder.tvOutput.setText("");
                 }
+
                 break;
             case R.id.btn_equal:
                 String result = calculate(collection.toString());
