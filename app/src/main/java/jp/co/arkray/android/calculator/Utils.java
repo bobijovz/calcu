@@ -1,11 +1,6 @@
 package jp.co.arkray.android.calculator;
 
-import android.support.v4.content.res.TypedArrayUtils;
-import android.util.Log;
-
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collection;
 import java.util.Collections;
 import java.util.Stack;
 import java.util.regex.Pattern;
@@ -81,19 +76,20 @@ public class Utils {
     }
 
     private Double calculate(double num1, double num2, String op) {
-        if (op.equals("+"))
-            return num1 + num2;
-        else if (op.equals("-"))
-            return num1 - num2;
-        else if (op.equals("*"))
-            return num1 * num2;
-        else if (op.equals("/")) {
-            if (num2 == 0)
-                throw new ArithmeticException("Division by zero!");
-            return num1 / num2;
-        } else {
-            System.out.println(op + " is not a supported operand");
-            return null;
+        switch (op) {
+            case "+":
+                return num1 + num2;
+            case "-":
+                return num1 - num2;
+            case "*":
+                return num1 * num2;
+            case "/":
+                if (num2 == 0)
+                    throw new ArithmeticException("Division by zero!");
+                return num1 / num2;
+            default:
+                System.out.println(op + " is not a supported operand");
+                return null;
         }
     }
 
