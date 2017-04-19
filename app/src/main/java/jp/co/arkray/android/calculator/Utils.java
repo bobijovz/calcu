@@ -12,7 +12,6 @@ import java.util.regex.Pattern;
 
 public class Utils {
 
-
     public ArrayList<String> convertToPostfix(String data) {
         Pattern op = Pattern.compile("(?<=/|\\*)-(\\d+\\.\\d+)|(?<=/|\\*)-(\\d+)|(?<=/|\\*)-(\\.\\d+)|(\\d+\\.\\d+)|(\\d+)|(\\.\\d+)");
         Pattern val = Pattern.compile("(?<=\\d|\\.)-|/|\\*|\\+");
@@ -94,6 +93,7 @@ public class Utils {
 
     public Double parseData(ArrayList<String> data){
         Stack<Double> numberStack =new Stack<Double>();
+
         for (String token: data){
             if ( token.matches(Constant.NUM_PATTERN.pattern())) {
                 double d = Double.parseDouble(token);

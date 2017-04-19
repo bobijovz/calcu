@@ -6,6 +6,8 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.HorizontalScrollView;
+import android.widget.Toast;
+
 import java.util.ArrayList;
 
 import jp.co.arkray.android.calculator.databinding.ActivityMainBinding;
@@ -40,8 +42,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         //collection.append("-1.23/-2.45*-1.56+2019-5.123*5/7-22-0.24+55-2.5/2*5*3-5.4+55*53.6");
         //binder.tvInput.setText(String.valueOf(collection));
         //binder.hscrollview.fullScroll(HorizontalScrollView.FOCUS_RIGHT);
-
-
     }
 
     @Override
@@ -93,8 +93,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             case R.id.btn_eight:
             case R.id.btn_nine:
                 addDataToCollection(((Button) v).getText().toString());
-
-                binder.tvOutput.setText(calculate(collection.toString()));
+                if(((Button) v).getText().toString().matches(Constant.NUM_PATTERN.pattern()))
+                    binder.tvOutput.setText(calculate(collection.toString()));
                 break;
         }
     }
@@ -158,7 +158,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         try {
             return String.valueOf(utils.parseData(postFix));
         } catch (Exception e){
-            return e.getMessage();
+            Toast.makeText(this,e.getMessage(),Toast.LENGTH_SHORT).show();
+            return "NaN";
         }
     }
 }
