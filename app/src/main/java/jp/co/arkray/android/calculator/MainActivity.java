@@ -37,9 +37,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         binder.btnSeven.setOnClickListener(this);
         binder.btnEight.setOnClickListener(this);
         binder.btnNine.setOnClickListener(this);
-        collection.append("-1.23/-2.45*-1.56+2019-5.123*5/7-22-0.24+55-2.5/2*5*3-5.4+55*53.6");
-        binder.tvInput.setText(String.valueOf(collection));
-        binder.hscrollview.fullScroll(HorizontalScrollView.FOCUS_RIGHT);
+        //collection.append("-1.23/-2.45*-1.56+2019-5.123*5/7-22-0.24+55-2.5/2*5*3-5.4+55*53.6");
+        //binder.tvInput.setText(String.valueOf(collection));
+        //binder.hscrollview.fullScroll(HorizontalScrollView.FOCUS_RIGHT);
 
 
     }
