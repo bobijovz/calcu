@@ -9,6 +9,7 @@ import android.widget.Button;
 import android.widget.HorizontalScrollView;
 import android.widget.Toast;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Stack;
@@ -92,8 +93,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             case R.id.btn_eight:
             case R.id.btn_nine:
                 addDataToCollection(((Button) v).getText().toString());
-                String temp = calculate(collection.toString());
-                binder.tvOutput.setText(temp);
+
+                binder.tvOutput.setText(calculate(collection.toString()));
                 break;
         }
     }
@@ -151,46 +152,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     }
 
     public String calculate(String data) {
+        Utils utils = new Utils();
+        ArrayList<String> postFix = utils.convertToPostfix(data);
 
-        String[] temp1 = data.split("(?<=/|\\*)-(\\d+\\.\\d+)|(?<=/|\\*)-(\\d+)|(?<=/|\\*)-(\\.\\d+)|(\\d+\\.\\d+)|(\\d+)|(\\.\\d+)");
-        String[] temp2 = data.split("(?<=\\d|\\.)-|/|\\*|\\+");
-        Log.d("full", data);
-
-        Stack<String> operations = new Stack<>();
-        Stack<String> values = new Stack<>();
-        Stack<String> computation = new Stack<>();
-
-        Collections.addAll(operations, temp1);
-        Collections.addAll(values, temp2);
-
-        if (data.substring(0, 1).contentEquals("-")) {
-            operations.remove(0);
-        }
-
-        for (int i = 0; i < values.size(); i++) {
-            computation.push(values.get(i).concat(" "));
-            if (operations.size() > i) computation.push(operations.get(i).concat(" "));
-        }
-        ScientificCalculator rp = new ScientificCalculator(true);
-
-        List<String> asPostfix = rp.convertToPostfix(computation);
-        String asPostfix_str = asPostfix.toString().replaceAll("[|]|,", " ");
-        asPostfix_str = asPostfix_str.substring(1, asPostfix_str.length() - 1);
-
-        System.out.println("asPostfix " + asPostfix_str);
-        String result = "NaN";
         try {
-            rp.parseRPN(asPostfix_str);
-            result = String.valueOf(rp.getResult());
-            Log.d("RESULT", String.valueOf(rp.getResult()));
-        } catch (Exception e) {
-            Log.e("Error", e.getMessage());
-            Toast.makeText(this, e.getMessage(), Toast.LENGTH_SHORT).show();
-            result = String.valueOf(e.getMessage());
+            return String.valueOf(utils.parseData(postFix));
+        } catch (Exception e){
+            return e.getMessage();
         }
-        return String.valueOf(result);
-
     }
-
-
 }
